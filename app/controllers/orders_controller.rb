@@ -10,13 +10,16 @@ class OrdersController < ApplicationController
   def create
     # "order"=>{"onigiri"=>["cheese", "kimchi", "mayo tuna"]}, "qua1"=>"2", "qua2"=>"", "qua3"=>"", "qua4"=>""
     onigiri = []
-    params[:order][:onigiri].each_with_index do |o, i|
+    quan = []
+    for i in 0..3
       a = 'qua' + i.to_s
       a = params[a.to_sym]
-      if a == ""
-        a = 0
+      if a != ""
+        quan << a
       end
-      onigiri << o << a
+    end
+    params[:order][:onigiri].each_with_index do |o, i|
+      onigiri << o << quan[i]
     end
     params[:order][:onigiri] = onigiri
     order = Order.new(order_params)
