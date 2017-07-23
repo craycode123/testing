@@ -1,0 +1,37 @@
+<style>
+  th, td {
+    border: solid;
+    border-color: grey;
+    padding: 0 10px;
+  }
+</style>
+<button><a href="/">BACK TO MENU</a></button>
+<h1>ALL ORDERS</h1>
+<table>
+  <tr>
+    <th>No.</th>
+    <th>Orders</th>
+    <th>Total Price</th>
+    <th>Status</th>
+  </tr>
+<% @orders.each do |o| %>
+    <tr>
+      <td><%= o.id %></td>
+      <td><% o.onigiri.each_with_index do |l, i| %>
+          <% if i % 2 == 0 %>
+            <li><%= l %>
+          <% else %>
+            x <%= l %></li>
+          <% end %>
+        <% end %>
+      </td>
+      <td>RM <%= o.total %></td>
+      <td><%= o.status %></td>
+      <% if o.status == "Waiting" %>
+      <td><%= form_for o do |form| %>
+              <button type="submit">Done</button>
+            <% end %></td>
+            <% end %>
+    </tr>
+  <% end %>
+</table>
