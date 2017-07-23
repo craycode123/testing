@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    byebug
     # "order"=>{"onigiri"=>["cheese", "kimchi", "mayo tuna"]}, "qua1"=>"2", "qua2"=>"", "qua3"=>"", "qua4"=>""
     onigiri = []
     params[:order][:onigiri].each_with_index do |o, i|
